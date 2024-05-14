@@ -1,10 +1,27 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App.tsx'
-import './index.css'
+// css
+import "@mantine/core/styles.css";
+import "@mantine/dates/styles.css";
+import "./index.css";
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
+// react
+import React from "react";
+import ReactDOM from "react-dom/client";
+
+// mantine
+import { MantineProvider } from "@mantine/core";
+import { ModalsProvider } from "@mantine/modals";
+import { RouterProvider } from "react-router-dom";
+
+// configs
+import { routes } from "./configs/routes";
+import { theme } from "./configs/theme";
+
+ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-)
+    <MantineProvider theme={theme}>
+      <ModalsProvider>
+        <RouterProvider router={routes} />
+      </ModalsProvider>
+    </MantineProvider>
+  </React.StrictMode>
+);
