@@ -9,7 +9,7 @@ type EditTaskModalProps = {
   type?: TaskType;
 };
 
-export function EditTaskModal({ data }: EditTaskModalProps) {
+export function EditTaskModal({ data, type }: EditTaskModalProps) {
   const [opened, { open, close }] = useDisclosure();
 
   const { mutateAsync, isPending } = useUpdateTask();
@@ -27,7 +27,7 @@ export function EditTaskModal({ data }: EditTaskModalProps) {
           onSubmit={async (value) => {
             mutateAsync({ id: data.id, ...value }).then(() => close());
           }}
-          type={"normal"}
+          type={type}
         />
       </Modal>
     </>

@@ -7,7 +7,7 @@ import { ToolBar } from "./Toolbar";
 
 export function Tasks() {
   const { data, isLoading } = useTasks({
-    tody: new Date(),
+    today: new Date(),
   });
 
   const [pending, setPending] = useState<Tasks[]>([]);

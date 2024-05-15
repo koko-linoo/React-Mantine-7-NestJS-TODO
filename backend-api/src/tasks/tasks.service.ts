@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { CreateTaskDto } from './dto/create-task.dto';
+import { FindAllQueryDto } from './dto/find-all-query.dto';
 import { UpdateTaskDto } from './dto/update-task.dto';
 
 @Injectable()
@@ -13,9 +14,29 @@ export class TasksService {
     });
   }
 
-  async findAll() {
+  async findAll({ today, ...query }: FindAllQueryDto) {
+    let startDate: Date | undefined;
+    let endDate: Date | undefined;
+
+    console.log(today, query);
+
+    if (today) {
+      startDate = new Date(today);
+      startDate.setHours(0, 0, 0, 0);
+      endDate = new Date(today);
+      endDate.setHours(23, 59, 59, 999);
+
+      console.log(startDate, endDate);
+    }
+
     const total = await this.prisma.task.count();
     const data = await this.prisma.task.findMany({
+      where: {
+        schedule: today && {
+          gte: startDate,
+          lte: endDate,
+        },
+      },
       orderBy: {
         status: 'asc',
       },

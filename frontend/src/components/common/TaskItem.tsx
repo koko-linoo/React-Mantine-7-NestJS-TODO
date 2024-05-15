@@ -44,7 +44,9 @@ export function TaskItem({ data, type = "normal" }: TaskItemProps) {
               Done
             </Button>
           )}
-          {data.status === "incomplete" && <EditTaskModal data={data} />}
+          {data.status === "incomplete" && (
+            <EditTaskModal data={data} type={type} />
+          )}
           <ActionIcon
             loading={isDeleting}
             variant="light"

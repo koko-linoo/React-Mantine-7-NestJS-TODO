@@ -5,7 +5,7 @@ import { IconCalendar } from "@tabler/icons-react";
 import * as z from "zod";
 
 type FormComponentProps = {
-  type: TaskType;
+  type?: TaskType;
   loading?: boolean;
   onCancel: () => void;
   onSubmit: (values: Record<string, unknown>) => void;
@@ -48,6 +48,7 @@ export function FormComponent({
 
         {type === "schedule" && (
           <DateInput
+            minDate={new Date()}
             leftSection={<IconCalendar />}
             label="Task Date"
             {...form.getInputProps("schedule")}
