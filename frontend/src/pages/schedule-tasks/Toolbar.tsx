@@ -4,8 +4,8 @@ import { Group, Text } from "@mantine/core";
 export function ToolBar() {
   return (
     <Group justify="space-between" h="48px">
-      <Text>Today Tasks</Text>
-      <AddTaskModal />
+      <Text>Schedule Tasks</Text>
+      <AddTaskModal type="schedule" />
     </Group>
   );
 }

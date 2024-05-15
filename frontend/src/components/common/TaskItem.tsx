@@ -1,9 +1,14 @@
-import { FormEditModal } from "@/pages/tasks/FormModal";
-import { useDeleteTask, useUpdateTask } from "@/pages/tasks/query";
+import { useDeleteTask, useUpdateTask } from "@/services/query";
 import { ActionIcon, Button, Group, Paper, Stack, Text } from "@mantine/core";
 import { IconTrash } from "@tabler/icons-react";
+import { EditTaskModal } from "./EditTaskModal";
 
-export function TaskItem({ data }: { data: Tasks }) {
+type TaskItemProps = {
+  data: Tasks;
+  type?: TaskType;
+};
+
+export function TaskItem({ data, type = "normal" }: TaskItemProps) {
   const { mutate: DeleteTask, isPending: isDeleting } = useDeleteTask();
   const { mutate: UpdateTask, isPending: isUpdating } = useUpdateTask();
 
@@ -21,11 +26,11 @@ export function TaskItem({ data }: { data: Tasks }) {
             fz="sm"
             td={data.status === "complete" ? "line-through" : undefined}
           >
-            {data.description ?? "-"}
+            {data?.description?.length ? data?.description : "-"}
           </Text>
         </Stack>
         <Group gap="16px">
-          {data.status === "incomplete" && (
+          {data.status === "incomplete" && type === "normal" && (
             <Button
               loading={isUpdating}
               size="xs"
@@ -39,7 +44,7 @@ export function TaskItem({ data }: { data: Tasks }) {
               Done
             </Button>
           )}
-          {data.status === "incomplete" && <FormEditModal data={data} />}
+          {data.status === "incomplete" && <EditTaskModal data={data} />}
           <ActionIcon
             loading={isDeleting}
             variant="light"

@@ -14,6 +14,8 @@ declare global {
     status: string;
   };
 
+  export type TaskType = "normal" | "schedule";
+
   export type Tasks = {
     id?: string;
     name?: string;

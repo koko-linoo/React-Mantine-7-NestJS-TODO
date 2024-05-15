@@ -2,10 +2,10 @@ import { createTask, deleteTask, getTasks, updateTask } from "@/services/tasks";
 import { notifications } from "@mantine/notifications";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
-export function useTasks() {
+export function useTasks(param?: Record<string, unknown>) {
   return useQuery({
-    queryKey: ["tasks"],
-    queryFn: () => getTasks(),
+    queryKey: ["tasks", param?.toString()],
+    queryFn: () => getTasks(param),
     select: (response) => response.data,
   });
 }

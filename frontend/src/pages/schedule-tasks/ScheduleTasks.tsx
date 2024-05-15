@@ -1,5 +1,35 @@
-import { Text } from "@mantine/core";
+import { TaskItem } from "@/components/common/TaskItem";
+import { useTasks } from "@/services/query";
+import { LoadingOverlay, ScrollArea, Stack } from "@mantine/core";
+import { useEffect } from "react";
+import { EmptyTask } from "./EmptyTask";
+import { ToolBar } from "./Toolbar";
 
 export function ScheduleTasks() {
-  return <Text>Schedule Tasks</Text>;
+  const { data, isLoading } = useTasks();
+
+  useEffect(() => {
+    if (data?.data) {
+      const;
+    }
+  }, [data]);
+
+  return (
+    <Stack gap="16px" pos="relative">
+      {<ToolBar />}
+      <LoadingOverlay visible={isLoading} />
+
+      <ScrollArea h="calc(100vh - 128px)">
+        <Stack gap="16px">
+          {data?.data?.length ? (
+            data?.data.map((x) => (
+              <TaskItem key={x.id} data={x} type="schedule" />
+            ))
+          ) : (
+            <EmptyTask />
+          )}
+        </Stack>
+      </ScrollArea>
+    </Stack>
+  );
 }

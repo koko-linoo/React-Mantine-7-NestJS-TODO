@@ -27,7 +27,7 @@ export function Layout() {
   }
 
   return (
-    <Flex p="16px" miw="100vw" gap="16px">
+    <Flex p="16px" gap="16px">
       <Paper w="300px" p="16px" h="calc(100vh - 32px)" shadow="md">
         <Stack>
           {menu.map((x) => (
@@ -35,8 +35,8 @@ export function Layout() {
           ))}
         </Stack>
       </Paper>
-      <Box flex="1">
-        <Box p="md" h="calc(100vh - 32px)">
+      <Box w="100%">
+        <Box p="md" mih="calc(100vh - 32px)" style={{ overflowY: "auto" }}>
           <Outlet />
         </Box>
       </Box>

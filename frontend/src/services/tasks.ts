@@ -1,7 +1,7 @@
 import api from "@/configs/axios";
 
-export function getTasks() {
-  return api.get<ApiListResponse<Tasks>>("/tasks");
+export function getTasks(params?: Record<string, unknown>) {
+  return api.get<ApiListResponse<Tasks>>("/tasks", { params });
 }
 
 export function createTask(body: Record<string, unknown>) {

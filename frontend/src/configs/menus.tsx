@@ -4,7 +4,7 @@ import { IconClock, IconList } from "@tabler/icons-react";
 export const menu: MenuItemProps[] = [
   {
     icon: <IconList />,
-    label: "Tasks",
+    label: "Today Tasks",
     to: "/",
   },
   {
