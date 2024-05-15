@@ -28,9 +28,9 @@ export function FormAddModal() {
   return (
     <>
       <Button onClick={open} leftSection={<IconPlus />}>
-        Add
+        Create a New Task
       </Button>
-      <Modal opened={opened} onClose={close} title="Add New Task">
+      <Modal opened={opened} onClose={close} title="Create a New Task">
         <FormComponent
           loading={isPending}
           onCancel={close}
@@ -50,7 +50,7 @@ export function FormEditModal({ data }: { data: Tasks }) {
 
   return (
     <>
-      <ActionIcon onClick={open} variant="light" radius="lg" size="lg">
+      <ActionIcon onClick={open} variant="light" size="lg">
         <IconEdit />
       </ActionIcon>
       <Modal opened={opened} onClose={close} title="Edit Task">

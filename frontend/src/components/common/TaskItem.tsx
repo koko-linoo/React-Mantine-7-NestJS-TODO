@@ -43,7 +43,6 @@ export function TaskItem({ data }: { data: Tasks }) {
           <ActionIcon
             loading={isDeleting}
             variant="light"
-            radius="lg"
             size="lg"
             color="red"
             onClick={() => DeleteTask(data.id)}
