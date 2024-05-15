@@ -1,19 +1,26 @@
 # Stage 1: Build the NestJS app
-FROM node:16-alpine AS builder
+FROM node:alpine AS builder
 
-WORKDIR /app/backend-api
+WORKDIR /app
 
-COPY package.json package-lock.json ./
+COPY package.json ./
+COPY package-lock.json ./
+
 RUN npm install
 
-COPY . ./
+COPY prisma ./prisma/
+
+COPY . .
+
+RUN npx prisma generate
+
 RUN npm run build
 
 # Stage 2: Run the NestJS app
-FROM node:16-alpine
+FROM node:alpine
 
-COPY --from=builder /app/backend-api/dist ./dist
-COPY --from=builder /app/backend-api/node_modules ./node_modules
+COPY --from=builder /app/dist ./dist
+COPY --from=builder /app/node_modules ./node_modules
 
 EXPOSE 3001
 
