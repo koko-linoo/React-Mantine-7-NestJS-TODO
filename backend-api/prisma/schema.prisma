@@ -13,12 +13,13 @@ enum Status {
 }
 
 model Task {
-  id        String    @id @default(uuid())
-  name      String
-  status    Status    @default(incomplete)
-  schedule  DateTime
-  createdAt DateTime  @default(now()) @map("created_at")
-  updatedAt DateTime? @updatedAt() @map("updated_at")
+  id          String    @id @default(uuid())
+  name        String
+  description String?
+  status      Status    @default(incomplete)
+  schedule    DateTime
+  createdAt   DateTime  @default(now()) @map("created_at")
+  updatedAt   DateTime? @updatedAt() @map("updated_at")
 
   @@map("tasks")
 }

@@ -5,16 +5,18 @@ import { MenuItem } from "./MenuItem";
 
 export function Layout() {
   return (
-    <Flex p="16px" miw="100vw">
+    <Flex p="16px" miw="100vw" gap="16px">
       <Paper w="300px" p="16px" h="calc(100vh - 32px)" shadow="md">
         <Stack>
           {menu.map((x) => (
-            <MenuItem {...x} />
+            <MenuItem key={x.to} {...x} />
           ))}
         </Stack>
       </Paper>
-      <Box p="16px">
-        <Outlet />
+      <Box flex="1">
+        <Box p="md" h="calc(100vh - 32px)">
+          <Outlet />
+        </Box>
       </Box>
     </Flex>
   );

@@ -17,12 +17,14 @@
     "@mantine/modals": "^7.9.1",
     "@mantine/notifications": "^7.9.1",
     "@tabler/icons-react": "^3.3.0",
+    "@tanstack/react-query": "^5.36.0",
     "axios": "^1.6.8",
     "dayjs": "^1.11.11",
     "path": "^0.12.7",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.23.1"
+    "react-router-dom": "^6.23.1",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "@types/node": "^20.12.12",

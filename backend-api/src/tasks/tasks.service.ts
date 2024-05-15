@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
+import { PrismaService } from 'src/prisma/prisma.service';
 import { CreateTaskDto } from './dto/create-task.dto';
 import { UpdateTaskDto } from './dto/update-task.dto';
-import { PrismaService } from 'src/prisma/prisma.service';
 
 @Injectable()
 export class TasksService {
@@ -13,8 +13,18 @@ export class TasksService {
     });
   }
 
-  findAll() {
-    return this.prisma.task.findMany();
+  async findAll() {
+    const total = await this.prisma.task.count();
+    const data = await this.prisma.task.findMany({
+      orderBy: {
+        status: 'asc',
+      },
+    });
+
+    return {
+      data,
+      total,
+    };
   }
 
   findOne(id: string) {
