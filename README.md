@@ -23,10 +23,18 @@ Clone Repository
 git clone https://github.com/koko-linoo/CDSG-Code-test.git
 ```
 
+Run Docker Container
+
+```
+cd CDSG-Code-test/
+docker-compose up --build -d
+```
+
 Run Migrations
 
 ```
 cd backend-api
+cp .env.example .env
 npm install
 npx prisma migrate dev
 ```
