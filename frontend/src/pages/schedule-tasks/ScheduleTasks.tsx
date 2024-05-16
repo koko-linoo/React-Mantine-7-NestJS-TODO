@@ -1,11 +1,20 @@
 import { TaskItem } from "@/components/common/TaskItem";
 import { useTasks } from "@/services/query";
-import { LoadingOverlay, ScrollArea, Stack } from "@mantine/core";
+import {
+  Divider,
+  LoadingOverlay,
+  ScrollArea,
+  Stack,
+  Text,
+} from "@mantine/core";
 import { EmptyTask } from "./EmptyTask";
 import { ToolBar } from "./Toolbar";
+import { useGroupTasks } from "./hook";
 
 export function ScheduleTasks() {
   const { data, isLoading } = useTasks();
+
+  const result = useGroupTasks(data?.data ?? []);
 
   return (
     <Stack gap="16px" pos="relative">
@@ -14,10 +23,20 @@ export function ScheduleTasks() {
 
       <ScrollArea h="calc(100vh - 128px)">
         <Stack gap="16px">
-          {data?.data?.length ? (
-            data?.data.map((x) => (
-              <TaskItem key={x.id} data={x} type="schedule" />
-            ))
+          {Object.keys(result).length ? (
+            <Stack>
+              {Object.entries(result).map(([date, tasks]) => (
+                <>
+                  <Text fs="italic" fw="bold">
+                    {date}
+                  </Text>
+                  {tasks.map((task) => (
+                    <TaskItem key={task.id} data={task} type="schedule" />
+                  ))}
+                  <Divider />
+                </>
+              ))}
+            </Stack>
           ) : (
             <EmptyTask />
           )}
