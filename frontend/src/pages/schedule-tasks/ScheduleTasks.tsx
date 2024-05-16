@@ -24,9 +24,9 @@ export function ScheduleTasks() {
       <ScrollArea h="calc(100vh - 128px)">
         <Stack gap="16px">
           {Object.keys(result).length ? (
-            <Stack>
+            <Stack gap="16px">
               {Object.entries(result).map(([date, tasks]) => (
-                <>
+                <Stack gap="16px" key={date}>
                   <Text fs="italic" fw="bold">
                     {date}
                   </Text>
@@ -34,7 +34,7 @@ export function ScheduleTasks() {
                     <TaskItem key={task.id} data={task} type="schedule" />
                   ))}
                   <Divider />
-                </>
+                </Stack>
               ))}
             </Stack>
           ) : (
