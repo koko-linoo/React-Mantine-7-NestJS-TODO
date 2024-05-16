@@ -38,3 +38,10 @@ cp .env.example .env
 npm install
 npx prisma migrate dev
 ```
+
+To synchronize database
+
+```
+cd ..
+docker-compose up --build -d
+```
