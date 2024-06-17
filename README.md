@@ -20,7 +20,7 @@ The To-Do List Application helps users manage daily tasks and schedules effectiv
 Clone Repository
 
 ```
-git clone https://github.com/koko-linoo/CDSG-Code-test.git
+git clone https://github.com/koko-linoo/React-Mantine-7-NestJS-TODO.git
 ```
 
 Run Docker Container
