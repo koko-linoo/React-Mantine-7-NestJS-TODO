@@ -26,7 +26,7 @@ git clone https://github.com/koko-linoo/React-Mantine-7-NestJS-TODO.git
 Run Docker Container
 
 ```
-cd CDSG-Code-test/
+cd React-Mantine-7-NestJS-TODO/
 docker-compose up --build -d
 ```
 
